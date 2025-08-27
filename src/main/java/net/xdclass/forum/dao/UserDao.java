@@ -3,6 +3,7 @@ package net.xdclass.forum.dao;
 import net.xdclass.forum.domain.User;
 import net.xdclass.forum.util.DataSourceUtil;
 import org.apache.commons.dbutils.*;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import java.sql.SQLException;
 
@@ -28,4 +29,14 @@ public class UserDao {
         return  i;
     }
 
+    public User findByPhoneAndPwd(String phone, String md5Pwd) {
+        String sql="select * from user where phone=? and pwd=?";
+        User user;
+        try {
+            user=queryRunner.query(sql,new BeanHandler<User>(User.class,processor),phone,md5Pwd);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
+    }
 }

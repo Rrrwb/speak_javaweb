@@ -27,6 +27,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public User login(String phone, String password) {
+        String md5Pwd = CommonUtil.MD5(password);
+        User user = userDao.findByPhoneAndPwd(phone,md5Pwd);
+
+        return user;
+    }
 
     /**
      * 放在CDN上的随机头像

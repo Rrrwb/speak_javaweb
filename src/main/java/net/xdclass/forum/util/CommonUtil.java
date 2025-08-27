@@ -3,7 +3,7 @@ package net.xdclass.forum.util;
 import java.security.MessageDigest;
 
 /**
- * c常用工具类
+ * 常用工具类
  */
 public class CommonUtil {
     public static String MD5(String data)  {

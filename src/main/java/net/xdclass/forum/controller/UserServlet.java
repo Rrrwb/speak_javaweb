@@ -33,14 +33,42 @@ public class UserServlet extends BaseServlet{
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         }
-
         int i=userService.register(user);
         if(i>0){
             //注册成功跳转登录 TODO
         }else {
             //注册失败 返回注册页面 TODO
         }
-
     }
+    //登录接口
+    public void login(HttpServletRequest request, HttpServletResponse response) {
+        String phone = request.getParameter("phone");
+        String password = request.getParameter("password");
+
+        User user=userService.login(phone,password);
+        if(user!=null){
+            request.getSession().setAttribute("loginuser",user);
+            //跳转页面 TODO
+        }else{
+            request.setAttribute("msg","用户名或密码不正确");
+        }
+    }
+
+    /**
+     * 用户退出
+     * @param request
+     * @param response
+     */
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().invalidate();
+        //跳转 TODO
+    }
+
+
+
+
+
+
+
 
 }
