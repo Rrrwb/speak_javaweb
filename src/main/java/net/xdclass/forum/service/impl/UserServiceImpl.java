@@ -17,7 +17,6 @@ public class UserServiceImpl implements UserService {
         user.setRole(1);
         user.setCreate_time(new Date());
         user.setImg(getRandomImg());
-
         user.setPwd(CommonUtil.MD5(user.getPwd()));
         try {
             return userDao.save(user);

@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class TopicDao {
@@ -62,4 +63,16 @@ public class TopicDao {
         return topic;
     }
 
+    public int save(Topic topic)throws Exception {
+        String sql="insert into topic (c_id,title,content,pv,user_id,username,user_img,create_time,update_time,hot,`delete`) values(?,?,?,?,?,?,?,?,?,?,?)";
+        Object[] params={topic.getcId(),topic.getTitle(),topic.getContent(),topic.getPv(),topic.getUserId(),topic.getUsername(),topic.getUserImg(),topic.getCreateTime(),topic.getUpdateTime(),topic.getHot(),topic.getDelete()
+        };
+        int i=0;
+        try {
+            i=queryRunner.update(sql,params);
+        } catch (SQLException e) {
+            throw new Exception(e);
+        }
+        return i;
+    }
 }

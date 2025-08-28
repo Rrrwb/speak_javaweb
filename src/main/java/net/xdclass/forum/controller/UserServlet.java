@@ -47,7 +47,7 @@ public class UserServlet extends BaseServlet{
 
         User user=userService.login(phone,password);
         if(user!=null){
-            request.getSession().setAttribute("loginuser",user);
+            request.getSession().setAttribute("loginUser",user);
             //跳转页面 TODO
         }else{
             request.setAttribute("msg","用户名或密码不正确");

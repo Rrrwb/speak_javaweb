@@ -2,6 +2,7 @@ package net.xdclass.forum.service;
 
 import net.xdclass.forum.domain.Reply;
 import net.xdclass.forum.domain.Topic;
+import net.xdclass.forum.domain.User;
 import net.xdclass.forum.dto.PageDTO;
 
 public interface TopicService {
@@ -11,5 +12,6 @@ public interface TopicService {
 
     Topic findById(int topicId);
 
+    int addTopic(User loginUser, String title, String content, int cId);
 }
 

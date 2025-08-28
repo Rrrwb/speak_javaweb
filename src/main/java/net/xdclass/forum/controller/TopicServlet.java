@@ -2,6 +2,7 @@ package net.xdclass.forum.controller;
 
 import net.xdclass.forum.domain.Reply;
 import net.xdclass.forum.domain.Topic;
+import net.xdclass.forum.domain.User;
 import net.xdclass.forum.dto.PageDTO;
 import net.xdclass.forum.service.TopicService;
 import net.xdclass.forum.service.impl.TopicServiceImpl;
@@ -20,6 +21,7 @@ public class TopicServlet extends BaseServlet {
      * 默认分页大小
      */
     private static final int pageSize=2;
+    //话题分页
     public void list(HttpServletRequest request, HttpServletResponse response)  {
         int cId=Integer.parseInt(request.getParameter("c_id"));
 
@@ -36,6 +38,11 @@ public class TopicServlet extends BaseServlet {
         request.setAttribute("topicPage", pageDTO);
    }
 
+    /**
+     * 话题详情
+     * @param request
+     * @param response
+     */
    public  void findDetailById(HttpServletRequest request, HttpServletResponse response)  {
         //获取topicid
        int topicId=Integer.parseInt(request.getParameter("topic_id"));
@@ -53,6 +60,35 @@ public class TopicServlet extends BaseServlet {
        request.setAttribute("topic", topic);
        request.setAttribute("replyPage", pageDTO);
    }
+
+    /**
+     * 发布主题
+     * @param request
+     * @param response
+     */
+   public void addTopic(HttpServletRequest request, HttpServletResponse response)  {
+        //获取用户
+       User loginUser=(User)request.getSession().getAttribute("loginUser");
+       //判断是否登录
+       if(loginUser==null){
+           request.getSession().setAttribute("msg","未登录，请登录");
+           //跳转登录页面 TODO
+           return;
+       }
+
+       String title=request.getParameter("title");
+       String content=request.getParameter("content");
+       int cId=Integer.parseInt(request.getParameter( "c_id"));
+       int row=topicService.addTopic(loginUser,title,content,cId);
+       if(row==1){
+           //成功
+
+       }else{
+           //失败
+       }
+
+
+    }
 
 
 }
