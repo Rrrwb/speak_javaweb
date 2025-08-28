@@ -75,4 +75,27 @@ public class TopicDao {
         }
         return i;
     }
+
+    /**
+     * 查找最新回复楼层
+     * @param topicId
+     * @return
+     */
+    public int findLatestFloorByTopicid(int topicId) {
+        int deaultFloor=0;
+        String sql = "select floor from reply where topic_id=? order by floor desc limit 1";
+        Integer floor=null;
+        try{
+        floor=(Integer) queryRunner.query(sql, new ScalarHandler<>(),topicId);
+        if(floor==null){
+            return deaultFloor;
+        }else{
+           return floor.intValue() ;
+        }
+    }catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+
+    }
 }

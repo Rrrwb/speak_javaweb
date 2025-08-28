@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.*;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ReplyDao {
@@ -44,4 +45,22 @@ public class ReplyDao {
         return replyList;
     }
 
+    /**
+     * 添加新回复
+     * @param reply
+     * @return
+     */
+    public int save(Reply reply) {
+        String sql="insert into  reply (topic_id,floor,content,user_id,username,user_img,create_time,update_time,`delete`) values(?,?,?,?,?,?,?,?,?)";
+        Object [] params ={
+                reply.getTopicId(),reply.getFloor(),reply.getContent(),reply.getUserId(),reply.getUsername(),reply.getUserImg(),reply.getCreateTime(),reply.getUpdateTime(),reply.getDelete(),
+        };
+        int rows=0;
+        try {
+            rows=queryRunner.update(sql,params);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rows;
+    }
 }

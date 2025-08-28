@@ -13,5 +13,7 @@ public interface TopicService {
     Topic findById(int topicId);
 
     int addTopic(User loginUser, String title, String content, int cId);
+
+    int replyByTopicId(User loginUser, String content, int topicId);
 }
 

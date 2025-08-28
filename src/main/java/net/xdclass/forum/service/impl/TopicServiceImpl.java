@@ -64,6 +64,38 @@ public class TopicServiceImpl implements TopicService {
         return rows;
     }
 
+    /**
+     * 盖楼回复
+     * @param loginUser
+     * @param content
+     * @param topicId
+     * @return
+     */
+    @Override
+    public int replyByTopicId(User loginUser, String content, int topicId) {
+        int floor=topicDao.findLatestFloorByTopicid(topicId);
+        Reply reply=new Reply();
+        reply.setFloor(floor+1);
+        reply.setContent(content);
+        reply.setCreateTime(new Date());
+        reply.setUserId(loginUser.getId());
+        reply.setUserImg(loginUser.getImg());
+        reply.setTopicId(topicId);
+        reply.setDelete(0);
+        reply.setUpdateTime(new Date());
+        reply.setContent(content);
+
+        int rows=replyDao.save(reply);
+        return rows;
+    }
+
+    /**
+     * 分页查询回复
+     * @param topicId
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @Override
     public PageDTO<Reply> findReplyPageByTopicId(int topicId, int page, int pageSize) {
         //查询总记录数

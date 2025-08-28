@@ -82,13 +82,35 @@ public class TopicServlet extends BaseServlet {
        int row=topicService.addTopic(loginUser,title,content,cId);
        if(row==1){
            //成功
-
        }else{
            //失败
        }
-
-
     }
+
+    /**
+     * 盖楼回复
+     * @param request
+     * @param response
+     */
+    public void replyByTopicId(HttpServletRequest request, HttpServletResponse response)  {
+        //登录判断
+        User loginUser=(User)request.getSession().getAttribute("loginUser");
+        if(loginUser==null){
+            request.getSession().setAttribute("msg","未登录，请登录");
+            //跳转登录页面 TODO
+            return;
+        }
+
+        int topicId=Integer.parseInt(request.getParameter("topic_id"));
+        String content=request.getParameter("content");
+        int rows=topicService.replyByTopicId(loginUser,content,topicId);
+        if(rows==1){
+            //发布成功
+        }else{
+            //发布失败
+        }
+    }
+
 
 
 }
