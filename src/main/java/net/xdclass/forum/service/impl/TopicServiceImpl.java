@@ -90,6 +90,17 @@ public class TopicServiceImpl implements TopicService {
     }
 
     /**
+     * 添加一个浏览量
+     */
+    @Override
+    public void addOnePv(int topicId) {
+        //pv+1
+        Topic topic=topicDao.findById(topicId);
+        int newPv=topic.getPv()+1;
+        topicDao.updatePv(topic,newPv,topic.getPv());
+    }
+
+    /**
      * 分页查询回复
      * @param topicId
      * @param page

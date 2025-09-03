@@ -54,6 +54,15 @@ public class TopicServlet extends BaseServlet {
            page=Integer.parseInt(currentPage);
        }
 
+       //处理浏览量，每次用户访问+1
+       String sessionReadKey="is_read_"+topicId;
+       Boolean isRead=(Boolean) request.getSession().getAttribute(sessionReadKey);
+       if(isRead==null){
+           request.getSession().setAttribute(sessionReadKey,true);
+           topicService.addOnePv(topicId);
+       }
+
+
        Topic topic=topicService.findById(topicId);
        PageDTO<Reply> pageDTO=topicService.findReplyPageByTopicId( topicId, page, pageSize);
        System.out.println(pageDTO);
