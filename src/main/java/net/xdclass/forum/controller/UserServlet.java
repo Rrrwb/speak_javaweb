@@ -24,6 +24,8 @@ public class UserServlet extends BaseServlet{
      * 用户注册
      */
     public void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 编码已由CharacterEncodingFilter统一处理
+        
         User user = new User();
         //直接把map映射给user
         Map<String, String[]> map = request.getParameterMap();
@@ -45,6 +47,8 @@ public class UserServlet extends BaseServlet{
     }
     //登录接口
     public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 编码已由CharacterEncodingFilter统一处理
+        
         String phone = request.getParameter("phone");
         String password = request.getParameter("pwd");
 

@@ -1,11 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
+<%
+    // 确保响应使用UTF-8编码
+    response.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html; charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
+%>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <title>开发者论坛 - 用户登录</title>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开发者论坛 - 用户登录</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/custom.css">
     <script src="${pageContext.request.contextPath}/static/jquery.min.js"></script>
@@ -14,10 +23,9 @@
 <body>
 
 <div class="container main-container">
-
     <!-- 页面标题 -->
     <h1 class="page-title">用户登录</h1>
-    
+
     <!-- 导航栏 -->
     <div class="navbar-custom">
         <ul class="nav nav-tabs">
@@ -38,8 +46,8 @@
 
     <!-- 登录表单 -->
     <div class="form-custom" style="max-width: 500px; margin: 0 auto;">
-        <form class="form-horizontal" role="form" action="/user?method=login" method="post">
-            
+        <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/user?method=login" method="post">
+
             <div class="form-group">
                 <label class="col-sm-3 control-label">手机号</label>
                 <div class="col-sm-9">
@@ -69,7 +77,7 @@
             <c:if test="${not empty msg}">
                 <div class="alert alert-danger alert-custom">
                     <i class="glyphicon glyphicon-exclamation-sign"></i>
-                    ${msg}
+                        ${msg}
                 </div>
             </c:if>
 

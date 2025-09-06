@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 public class BaseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
+        // 编码已由CharacterEncodingFilter统一处理，无需重复设置
 
         //获取请求方法
         String method=req.getParameter("method");
