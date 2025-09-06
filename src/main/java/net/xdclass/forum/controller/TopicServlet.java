@@ -26,17 +26,30 @@ import java.io.IOException;
      /**
      * 默认分页大小
      */
-    private static final int pageSize=2;
+    private static final int pageSize=4;
     //话题分页
     public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int cId=Integer.parseInt(request.getParameter("c_id"));
+        // 获取分类ID，如果为null则默认为1
+        String cIdStr = request.getParameter("c_id");
+        int cId = 1; // 默认分类ID为1
+        if (cIdStr != null && !cIdStr.trim().isEmpty()) {
+            try {
+                cId = Integer.parseInt(cIdStr);
+            } catch (NumberFormatException e) {
+                cId = 1; // 如果解析失败，使用默认值
+            }
+        }
 
         //默认第一页
         int page=1;
         String currentPage=request.getParameter("page");
 
-        if(currentPage!=null&&currentPage!=""){
-            page=Integer.parseInt(currentPage);
+        if(currentPage!=null&&!currentPage.trim().isEmpty()){
+            try {
+                page=Integer.parseInt(currentPage);
+            } catch (NumberFormatException e) {
+                page = 1; // 如果解析失败，使用默认值
+            }
         }
 
         PageDTO<Topic> pageDTO=topicService.listTopicPageByCid( cId, page, pageSize);
@@ -52,14 +65,31 @@ import java.io.IOException;
      * @param response
      */
    public  void findDetailById(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-        //获取topicid
-       int topicId=Integer.parseInt(request.getParameter("topic_id"));
+        //获取topicid，如果为null则抛出异常或重定向
+        String topicIdStr = request.getParameter("topic_id");
+        if (topicIdStr == null || topicIdStr.trim().isEmpty()) {
+            response.sendRedirect("/topic?method=list&c_id=1");
+            return;
+        }
+        
+        int topicId;
+        try {
+            topicId = Integer.parseInt(topicIdStr);
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/topic?method=list&c_id=1");
+            return;
+        }
+        
        //默认第一页
        int page=1;
        String currentPage=request.getParameter("page");
 
-       if(currentPage!=null&& !currentPage.equals("")){
-           page=Integer.parseInt(currentPage);
+       if(currentPage!=null&& !currentPage.trim().isEmpty()){
+           try {
+               page=Integer.parseInt(currentPage);
+           } catch (NumberFormatException e) {
+               page = 1; // 如果解析失败，使用默认值
+           }
        }
 
        //处理浏览量，每次用户访问+1

@@ -1,0 +1,493 @@
+/* 小滴课堂开发者论坛 - 自定义样式 */
+
+/* 全局样式 */
+body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* 主容器样式 */
+.main-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+}
+
+/* 导航栏美化 */
+.navbar-custom {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-custom .nav-tabs {
+    border: none;
+    background: transparent;
+}
+
+.navbar-custom .nav-tabs > li > a {
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.navbar-custom .nav-tabs > li > a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.navbar-custom .nav-tabs > li.active > a {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: none;
+}
+
+/* 用户信息区域 */
+.user-info {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin: 5px;
+}
+
+.user-info a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.user-info a:hover {
+    color: #f8f9fa;
+    text-decoration: none;
+}
+
+.user-avatar {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.user-avatar:hover {
+    border-color: white;
+    transform: scale(1.1);
+}
+
+/* 表格美化 */
+.table-custom {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: none;
+}
+
+.table-custom thead {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+.table-custom thead th {
+    border: none;
+    padding: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.table-custom tbody tr {
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.table-custom tbody tr:hover {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-custom tbody td {
+    border: none;
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* 话题标题样式 */
+.topic-title {
+    font-weight: 600;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.topic-title:hover {
+    color: #667eea;
+    text-decoration: none;
+}
+
+/* 话题内容预览 */
+.topic-content {
+    color: #6c757d;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 作者信息 */
+.author-info {
+    color: #667eea;
+    font-weight: 500;
+}
+
+/* 时间信息 */
+.time-info {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+/* 操作按钮 */
+.action-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.action-btn:hover {
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* 分页样式 */
+.pagination-custom {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.pagination-custom .pagination {
+    background: white;
+    border-radius: 25px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.pagination-custom .pagination > li > a {
+    color: #667eea;
+    border: none;
+    margin: 0 5px;
+    border-radius: 20px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.pagination-custom .pagination > li > a:hover {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.pagination-custom .pagination > li.active > a {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+}
+
+/* 表单样式 */
+.form-custom {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.form-custom .form-group {
+    margin-bottom: 25px;
+}
+
+.form-custom .control-label {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.form-custom .form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    min-height: 50px;
+    line-height: 1.4;
+}
+
+.form-custom .form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    background: white;
+}
+
+/* 下拉选择框样式 */
+.form-custom select.form-control {
+    min-height: 50px;
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/* 下拉选项样式 */
+.form-custom select.form-control option {
+    padding: 10px;
+    background: white;
+    color: #2c3e50;
+}
+
+.form-custom select.form-control option:hover {
+    background: #f8f9fa;
+    color: #667eea;
+}
+
+/* 单选按钮样式 */
+.form-custom .radio-inline {
+    margin-right: 20px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #f8f9fa;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.form-custom .radio-inline:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.form-custom .radio-inline input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #667eea;
+}
+
+.form-custom .radio-inline input[type="radio"]:checked + * {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.form-custom .radio-inline:has(input[type="radio"]:checked) {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border-color: #667eea;
+}
+
+.form-custom textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* 按钮样式 */
+.btn-custom {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-custom:hover {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-custom:active {
+    transform: translateY(-1px);
+}
+
+/* 页面标题 */
+.page-title {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 话题详情样式 */
+.topic-detail {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.topic-detail-title {
+    color: #2c3e50;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 10px;
+}
+
+.topic-detail-content {
+    color: #495057;
+    line-height: 1.8;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.topic-detail-meta {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 4px solid #667eea;
+}
+
+/* 回复区域样式 */
+.reply-section {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.reply-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.reply-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.reply-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reply-author {
+    color: #667eea;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.reply-floor {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.reply-time {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.reply-content {
+    color: #495057;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-container {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .page-title {
+        font-size: 2em;
+    }
+    
+    .form-custom {
+        padding: 20px;
+    }
+    
+    .table-custom {
+        font-size: 0.9em;
+    }
+    
+    .topic-content {
+        max-width: 200px;
+    }
+}
+
+/* 加载动画 */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(102, 126, 234, 0.3);
+    border-radius: 50%;
+    border-top-color: #667eea;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 成功/错误消息样式 */
+.alert-custom {
+    border-radius: 10px;
+    border: none;
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+}
+
+.alert-danger {
+    background: linear-gradient(45deg, #dc3545, #e83e8c);
+    color: white;
+}
+
+.alert-info {
+    background: linear-gradient(45deg, #17a2b8, #6f42c1);
+    color: white;
+}
