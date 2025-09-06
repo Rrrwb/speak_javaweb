@@ -19,14 +19,15 @@ public class UserDao {
         Object[]parmas={
                 user.getPhone(),user.getPwd(),user.getSex(),user.getImg(),user.getCreateTime(),user.getRole(),user.getUsername()
         };
-        int i;
+        int i=0;
         try {
             i=queryRunner.update(sql,parmas);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
+        }finally {
+            return  i;
         }
-        return  i;
     }
 
     public User findByPhoneAndPwd(String phone, String md5Pwd) {

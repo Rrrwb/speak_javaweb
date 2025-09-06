@@ -10,6 +10,8 @@ import net.xdclass.forum.domain.User;
 import net.xdclass.forum.dto.PageDTO;
 import net.xdclass.forum.service.TopicService;
 
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -45,10 +47,10 @@ public class TopicServiceImpl implements TopicService {
         Topic topic=new Topic();
         topic.setTitle(title);
         topic.setContent(content);
-        topic.setCreateTime(new Date());
+        topic.setCreateTime(LocalDateTime.now());
         topic.setPv(1);
         topic.setDelete(0);
-        topic.setUpdateTime(new Date());
+        topic.setUpdateTime(LocalDateTime.now());
         topic.setUserId(loginUser.getId());
         topic.setUserImg(loginUser.getImg());
         topic.setUsername(loginUser.getUsername());
@@ -77,12 +79,12 @@ public class TopicServiceImpl implements TopicService {
         Reply reply=new Reply();
         reply.setFloor(floor+1);
         reply.setContent(content);
-        reply.setCreateTime(new Date());
+        reply.setCreateTime(LocalDateTime.now());
         reply.setUserId(loginUser.getId());
         reply.setUserImg(loginUser.getImg());
         reply.setTopicId(topicId);
         reply.setDelete(0);
-        reply.setUpdateTime(new Date());
+        reply.setUpdateTime(LocalDateTime.now());
         reply.setContent(content);
 
         int rows=replyDao.save(reply);

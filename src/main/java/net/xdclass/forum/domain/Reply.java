@@ -1,6 +1,6 @@
 package net.xdclass.forum.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 论坛开发回复类
@@ -14,8 +14,8 @@ public class Reply {
     private int userId;
     private String username;
     private String userImg;
-    private Date createTime;
-    private Date updateTime;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
     private int hot;
     private int delete;
 
@@ -92,19 +92,19 @@ public class Reply {
         this.userImg = userImg;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 

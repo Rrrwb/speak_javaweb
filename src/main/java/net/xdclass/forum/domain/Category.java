@@ -1,6 +1,7 @@
 package net.xdclass.forum.domain;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 论坛开发分类
@@ -50,7 +51,7 @@ public class Category {
         return createTime;
     }
 
-    public void setCreate_time(LocalDateTime createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 }

@@ -4,25 +4,31 @@ import net.xdclass.forum.domain.Reply;
 import net.xdclass.forum.domain.Topic;
 import net.xdclass.forum.domain.User;
 import net.xdclass.forum.dto.PageDTO;
+import net.xdclass.forum.service.CategoryService;
 import net.xdclass.forum.service.TopicService;
+import net.xdclass.forum.service.impl.CategoryServiceImpl;
 import net.xdclass.forum.service.impl.TopicServiceImpl;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 主题详情 话题
  */
 @WebServlet(name = "TopicServlet",urlPatterns = "/topic")
-public class TopicServlet extends BaseServlet {
+    public class TopicServlet extends BaseServlet {
     private TopicService topicService=new TopicServiceImpl();
-    /**
+    private CategoryService categoryService=new CategoryServiceImpl();
+
+     /**
      * 默认分页大小
      */
     private static final int pageSize=2;
     //话题分页
-    public void list(HttpServletRequest request, HttpServletResponse response)  {
+    public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int cId=Integer.parseInt(request.getParameter("c_id"));
 
         //默认第一页
@@ -35,7 +41,9 @@ public class TopicServlet extends BaseServlet {
 
         PageDTO<Topic> pageDTO=topicService.listTopicPageByCid( cId, page, pageSize);
         System.out.println(pageDTO);
+        request.getSession().setAttribute("categoryList", categoryService.list());
         request.setAttribute("topicPage", pageDTO);
+        request.getRequestDispatcher("/index.jsp").forward(request,response);
    }
 
     /**
@@ -43,7 +51,7 @@ public class TopicServlet extends BaseServlet {
      * @param request
      * @param response
      */
-   public  void findDetailById(HttpServletRequest request, HttpServletResponse response)  {
+   public  void findDetailById(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         //获取topicid
        int topicId=Integer.parseInt(request.getParameter("topic_id"));
        //默认第一页
@@ -68,6 +76,8 @@ public class TopicServlet extends BaseServlet {
        System.out.println(pageDTO);
        request.setAttribute("topic", topic);
        request.setAttribute("replyPage", pageDTO);
+
+       request.getRequestDispatcher("/topic_detail.jsp").forward(request,response);
    }
 
     /**
@@ -75,25 +85,24 @@ public class TopicServlet extends BaseServlet {
      * @param request
      * @param response
      */
-   public void addTopic(HttpServletRequest request, HttpServletResponse response)  {
+   public void addTopic(HttpServletRequest request, HttpServletResponse response)  throws  Exception {
         //获取用户
        User loginUser=(User)request.getSession().getAttribute("loginUser");
        //判断是否登录
        if(loginUser==null){
            request.getSession().setAttribute("msg","未登录，请登录");
-           //跳转登录页面 TODO
+           //跳转登录页面
+           response.sendRedirect("/user/login.jsp");
            return;
        }
 
        String title=request.getParameter("title");
        String content=request.getParameter("content");
        int cId=Integer.parseInt(request.getParameter( "c_id"));
-       int row=topicService.addTopic(loginUser,title,content,cId);
-       if(row==1){
-           //成功
-       }else{
-           //失败
-       }
+       //保存参数到数据库
+       topicService.addTopic(loginUser,title,content,cId);
+       //发布主题成功
+       response.sendRedirect("/topic?method=list&c_id="+cId);
     }
 
     /**
@@ -101,12 +110,13 @@ public class TopicServlet extends BaseServlet {
      * @param request
      * @param response
      */
-    public void replyByTopicId(HttpServletRequest request, HttpServletResponse response)  {
+    public void replyByTopicId(HttpServletRequest request, HttpServletResponse response)  throws  Exception {
         //登录判断
         User loginUser=(User)request.getSession().getAttribute("loginUser");
         if(loginUser==null){
             request.getSession().setAttribute("msg","未登录，请登录");
-            //跳转登录页面 TODO
+            //跳转登录页面
+            request.getRequestDispatcher("/user/login.jsp").forward(request,response);
             return;
         }
 
@@ -114,9 +124,8 @@ public class TopicServlet extends BaseServlet {
         String content=request.getParameter("content");
         int rows=topicService.replyByTopicId(loginUser,content,topicId);
         if(rows==1){
-            //发布成功
-        }else{
-            //发布失败
+            //回复成功
+            response.sendRedirect("/topic?method=findDetailById&topic_id="+topicId+"&page=1");
         }
     }
 

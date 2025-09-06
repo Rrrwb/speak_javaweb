@@ -23,7 +23,7 @@ public class TopicDao {
      * @return
      */
     public  int countTotalByCid(int cId) {
-        String sql = "select count(*) from topic where c_id=? and 'delete'=0";
+        String sql = "select count(*) from topic where c_id=? and `delete`=0";
         Long count=null;
         try {
             count=(Long)queryRunner.query(sql, new ScalarHandler<>(), cId);
@@ -42,7 +42,7 @@ public class TopicDao {
      * @return
      */
     public List<Topic> findListByCid(int cId, int from, int pageSize) {
-        String sql = "select * from topic where c_id=? and 'delete'=0 order by update_time desc limit ?,?";
+        String sql = "select * from topic where c_id=? and `delete`=0 order by update_time desc limit ?,?";
         List<Topic> list=null;
         try {
             list=queryRunner.query(sql, new BeanListHandler<>(Topic.class,processor), cId, from, pageSize);
@@ -64,7 +64,7 @@ public class TopicDao {
     }
 
     public int save(Topic topic)throws Exception {
-        String sql="insert into topic (c_id,title,content,pv,user_id,username,user_img,create_time,update_time,hot,`delete`) values(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="insert into topic (c_id,title,content,pv,user_id,username,user_img,create_time,update_time,hot,`delete`)"+ "values(?,?,?,?,?,?,?,?,?,?,?)";
         Object[] params={topic.getcId(),topic.getTitle(),topic.getContent(),topic.getPv(),topic.getUserId(),topic.getUsername(),topic.getUserImg(),topic.getCreateTime(),topic.getUpdateTime(),topic.getHot(),topic.getDelete()
         };
         int i=0;
